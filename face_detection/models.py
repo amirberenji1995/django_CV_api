@@ -1,4 +1,7 @@
 from django.db import models
+from base.models import BaseImage
 
 
-# Create your models here.
+class FaceImage(BaseImage):
+    pass
+
