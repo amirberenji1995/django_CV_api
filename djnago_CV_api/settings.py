@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'face_detection',
     'base',
     'rest_framework',
+    'image_processing',
 ]
 
 MIDDLEWARE = [

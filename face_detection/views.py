@@ -28,3 +28,4 @@ class FaceDetectionView(APIView):
             return Response(result.data, status = status.HTTP_201_CREATED)
         else:
             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
