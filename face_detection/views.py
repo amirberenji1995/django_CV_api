@@ -5,10 +5,11 @@ from rest_framework import status
 from face_detection.serializers import FaceSerializer
 from face_detection.models import FaceImage
 from CV_Scripts.faceDetection import face_detector
+from django.conf import settings
 
 
 # add stands for the address of the parent Django folder of the project
-add = '/home/amirberenji/venvs/CV_api/project/djnago_CV_api'
+add = str(settings.BASE_DIR)
 
 
 class FaceDetectionView(APIView):
