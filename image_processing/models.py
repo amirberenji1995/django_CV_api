@@ -3,5 +3,5 @@ from base.models import BaseImage
 
 
 class Image(BaseImage):
-    pass
+    scale = models.FloatField(blank=True, null=True)
 
