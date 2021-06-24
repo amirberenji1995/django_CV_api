@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
 from rest_framework import status
-from image_processing.serializers import ImageSerializer
+from image_processing.serializers import ImageSerializer, ImageScalerSerializer
 from image_processing.models import Image
 from CV_Scripts.image_grayer import image_grayer
 from CV_Scripts.image_scaler import image_scaler
@@ -34,7 +34,7 @@ class ImageScalerView(APIView):
     parser_classes = (MultiPartParser,)
 
     def post(self, request, format = None):
-        file_serializer = ImageSerializer(data = request.data)
+        file_serializer = ImageScalerSerializer(data = request.data)
         if file_serializer.is_valid():
             file_serializer.save()
             image = image_scaler(add, file_serializer.data['original'], file_serializer.data['scale'])
@@ -42,7 +42,7 @@ class ImageScalerView(APIView):
             File.processed = image
             File.save()
             File = Image.objects.latest('uploaded_at')
-            result = ImageSerializer(File)
+            result = ImageScalerSerializer(File)
             return Response(result.data, status=status.HTTP_201_CREATED)
         else:
             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
